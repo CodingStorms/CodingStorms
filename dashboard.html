@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raj's Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e1e2f;
+      color: white;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .profile {
+      background-color: #4e4ef5;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .hamburger-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .menu a:hover {
+      background-color: #33334d;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #1e1e2f;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1;
+      }
+      .menu.active {
+        display: flex;
+      }
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .batch {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .batch-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .progress {
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 10px;
+      height: 20px;
+    }
+
+    .progress-bar {
+      background-color: #4caf50;
+      height: 100%;
+      width: 10%;
+    }
+
+    .lectures {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .lecture {
+      background-color: #f0f0f0;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .recommendations, .notifications {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+
+    .recommendations h3, .notifications h3 {
+      margin-top: 0;
+    }
+
+    .notifications ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="profile">R</div>
+    <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+    <div class="menu" id="menu">
+      <a href="#" onclick="goToSettings()">Settings</a>
+      <a href="#" onclick="goToPurchases()">Purchased</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Welcome, Raj!</h2>
+
+    <div class="batch">
+      <div class="batch-header" onclick="toggleLectures()">
+        <h3>DSA Purchased Batch</h3>
+        <span id="arrow">&#9654;</span>
+      </div>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <p>10% completed</p>
+      <div class="lectures" id="lectures">
+        <div class="lecture">Day 1: Introduction to DSA</div>
+        <div class="lecture">Day 2: Arrays and Strings</div>
+        <div class="lecture">Day 3: Linked Lists</div>
+        <div class="lecture">Day 4: Stacks and Queues</div>
+        <div class="lecture">Day 5: Trees</div>
+        <div class="lecture">Day 6: Graphs</div>
+        <div class="lecture">Day 7: Sorting Algorithms</div>
+        <div class="lecture">Day 8: Searching Algorithms</div>
+        <div class="lecture">Day 9: Recursion & Backtracking</div>
+        <div class="lecture">Day 10: Dynamic Programming</div>
+      </div>
+    </div>
+
+    <div class="recommendations">
+      <h3>Recommendations</h3>
+      <p>Start with problem-solving sets or explore advanced algorithms to enhance your understanding.</p>
+    </div>
+
+    <div class="notifications">
+      <h3>Notifications</h3>
+      <ul>
+        <li>New DSA quiz available.</li>
+        <li>Live session scheduled for Day 5 content.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+
+    function toggleLectures() {
+      const lectures = document.getElementById("lectures");
+      const arrow = document.getElementById("arrow");
+      if (lectures.style.display === "block") {
+        lectures.style.display = "none";
+        arrow.innerHTML = "&#9654;";
+      } else {
+        lectures.style.display = "block";
+        arrow.innerHTML = "&#9660;";
+      }
+    }
+
+    function logout() {
+      window.location.href = "login.html";
+    }
+
+    function goToSettings() {
+      alert("Settings page coming soon!");
+    }
+
+    function goToPurchases() {
+      alert("Purchased batches list loading...");
+    }
+  </script>
+</body>
+</html>
