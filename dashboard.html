@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raj's Dashboard</title>
   <style>
     body {
@@ -121,6 +121,12 @@
       border-radius: 4px;
     }
 
+    .lectures a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
     .recommendations, .notifications {
       background-color: white;
       padding: 1rem;
@@ -143,9 +149,9 @@
     <div class="profile">R</div>
     <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
     <div class="menu" id="menu">
-      <a href="#" onclick="goToSettings()">Settings</a>
-      <a href="#" onclick="goToPurchases()">Purchased</a>
-      <a href="#" onclick="logout()">Logout</a>
+      <a href="settings.html">Settings</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="login.html">Logout</a>
     </div>
   </nav>
 
@@ -162,16 +168,16 @@
       </div>
       <p>10% completed</p>
       <div class="lectures" id="lectures">
-        <div class="lecture">Day 1: Introduction to DSA</div>
-        <div class="lecture">Day 2: Arrays and Strings</div>
-        <div class="lecture">Day 3: Linked Lists</div>
-        <div class="lecture">Day 4: Stacks and Queues</div>
-        <div class="lecture">Day 5: Trees</div>
-        <div class="lecture">Day 6: Graphs</div>
-        <div class="lecture">Day 7: Sorting Algorithms</div>
-        <div class="lecture">Day 8: Searching Algorithms</div>
-        <div class="lecture">Day 9: Recursion & Backtracking</div>
-        <div class="lecture">Day 10: Dynamic Programming</div>
+        <a href="day1.html"><div class="lecture">Day 1: Introduction to DSA</div></a>
+        <a href="day2.html"><div class="lecture">Day 2: Arrays and Strings</div></a>
+        <a href="day3.html"><div class="lecture">Day 3: Linked Lists</div></a>
+        <a href="day4.html"><div class="lecture">Day 4: Stacks and Queues</div></a>
+        <a href="day5.html"><div class="lecture">Day 5: Trees</div></a>
+        <a href="day6.html"><div class="lecture">Day 6: Graphs</div></a>
+        <a href="day7.html"><div class="lecture">Day 7: Sorting Algorithms</div></a>
+        <a href="day8.html"><div class="lecture">Day 8: Searching Algorithms</div></a>
+        <a href="day9.html"><div class="lecture">Day 9: Recursion & Backtracking</div></a>
+        <a href="day10.html"><div class="lecture">Day 10: Dynamic Programming</div></a>
       </div>
     </div>
 
@@ -204,18 +210,6 @@
         lectures.style.display = "block";
         arrow.innerHTML = "&#9660;";
       }
-    }
-
-    function logout() {
-      window.location.href = "login.html";
-    }
-
-    function goToSettings() {
-      alert("Settings page coming soon!");
-    }
-
-    function goToPurchases() {
-      alert("Purchased batches list loading...");
     }
   </script>
 </body>
