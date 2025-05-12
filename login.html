@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Coding Stroms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root { --primary: #2563eb; --text: #1f2937; --light: #f8fafc; --border: #e5e7eb; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: var(--light); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
+    nav { background: var(--light); padding: 1rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .logo { color: var(--primary); font-size: 1.5rem; font-weight: 700; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; transition: left 0.3s ease; }
+    .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--primary); }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger .bar { width: 25px; height: 3px; background-color: var(--text); transition: all 0.3s ease; }
+    .container-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; margin-top: 80px; }
+    .login-container { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; max-width: 360px; animation: fadeIn 0.5s ease; }
+    .login-container h2 { text-align: center; margin-bottom: 1.5rem; color: var(--primary); animation: fadeInUp 0.5s ease; }
+    .form-group { margin-bottom: 1rem; animation: fadeInUp 0.5s ease; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem; transition: border-color 0.3s; }
+    input:focus { outline: none; border-color: var(--primary); }
+    .login-button { width: 100%; padding: 0.75rem; background: var(--primary); color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: transform 0.2s; animation: fadeInUp 0.5s ease; }
+    .login-button:hover { transform: scale(1.05); }
+    .status-message { margin-top: 1rem; text-align: center; font-size: 0.9rem; height: 1.2em; animation: fadeIn 0.5s ease; }
+    .bottom-links { text-align: center; margin-top: 1rem; font-size: 0.9rem; animation: fadeIn 0.5s ease; }
+    .bottom-links a { color: var(--primary); text-decoration: none; margin: 0 0.5rem; transition: opacity 0.3s ease; }
+    .bottom-links a:hover { opacity: 0.8; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { position: fixed; top: 60px; left: -100%; background: var(--light); width: 100%; flex-direction: column; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+      .nav-links.active { left: 0; }
+      .hamburger.active .bar:nth-child(2) { opacity: 0; }
+      .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Coding Stroms</div>
+    <div class="nav-links">
+      <a href="#">Login</a>
+      <a href="#">Signup</a>
+      <a href="#">Courses</a>
+      <a href="#">Career</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+  <div class="container-wrapper">
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required onchange="validateCredentials()">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="********" required onchange="validateCredentials()">
+        </div>
+        <button type="submit" class="login-button">Sign In</button>
+        <div id="status-message" class="status-message"></div>
+      </form>
+      <div class="bottom-links">
+        <a href="#">Forgot Password?</a>|
+        <a href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const validEmail = 'rajnamadev0@gmail.com';
+    const validPassword = 'Raj22062006';
+    const statusDiv = document.getElementById('status-message');
+
+    function toggleMenu() {
+      document.querySelector('.hamburger').classList.toggle('active');
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    function validateCredentials() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!email && !password) {
+        statusDiv.textContent = '';
+        return;
+      }
+      if (email === validEmail && password === validPassword) {
+        statusDiv.style.color = 'green';
+        statusDiv.textContent = 'Credentials look correct';
+      } else {
+        statusDiv.style.color = 'red';
+        statusDiv.textContent = 'Credentials do not match';
+      }
+    }
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (email === validEmail && password === validPassword) {
+        statusDiv.style.color = 'green';
+        statusDiv.textContent = 'Correct credentials';
+        setTimeout(() => window.location.href = 'dashboard.html', 1000);
+      } else {
+        statusDiv.style.color = 'red';
+        statusDiv.textContent = 'Incorrect credentials';
+        setTimeout(() => statusDiv.textContent = '', 3000);
+      }
+    });
+  </script>
+</body>
+</html>
